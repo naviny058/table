@@ -1,16 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Sidebar from '../components/Sidebar'
-import { Outlet } from 'react-router-dom'
-import { Radio } from 'antd'
+import { Navigate, Outlet } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
 function DashboardLayout() {
-  const options = [
-    { label: 'Account', value: 'Account', link: '/account' },
-    { label: 'Create', value: 'Create', link: '/create' },
-  ];
-  const onChange = () => {
+  const navigate = useNavigate()
+  const [currentPage, setCurrentPage] = useState('table')
 
+  function handleOnClickTable() {
+    setCurrentPage('form')
+    navigate('userTable')
+  }
+  function handleOnClickForm() {
+    setCurrentPage('table')
+    navigate('userForm')
   }
   return (
     <div className='flex h-screen  container mx-auto'>
@@ -20,16 +23,9 @@ function DashboardLayout() {
       </aside>
 
       <main className='flex-1 p-4'>
-        <div className='w-60 my-4'>
-          <Radio.Group
-            block
-            options={options}
-            onChange={onchange}
-            defaultValue="Apple"
-            optionType="button"
-            buttonStyle="solid"
-          />
-
+        <div className='flex gap-4 bg-gray-500 rounded-md w-fit py-2 px-4 my-4'>
+          <span onClick={handleOnClickTable} className={`${currentPage === 'form' ? "bg-white" : ""} py-2 px-4 rounded-md hover:cursor-pointer`}>Account</span>
+          <span onClick={handleOnClickForm} className={`${currentPage === 'table' ? "bg-white" : ""} py-2 px-4 rounded-md hover:cursor-pointer`}>Creates</span>
         </div>
         <Outlet />
       </main>

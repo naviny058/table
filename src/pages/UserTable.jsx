@@ -1,6 +1,6 @@
 import React from 'react'
 import { Table } from 'antd';
-
+import './custom.css'
 function UserTable() {
   const dataSource = [
     {
@@ -136,7 +136,7 @@ function UserTable() {
   ];
 
   return (
-    <div>
+    <div className='custom-table'>
       <Table
         rowKey="email"
         dataSource={dataSource} columns={columns} />
