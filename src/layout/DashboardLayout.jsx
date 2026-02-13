@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function DashboardLayout() {
   const navigate = useNavigate()
-  const [currentPage, setCurrentPage] = useState('table')
+  const [currentPage, setCurrentPage] = useState('form')
 
   function handleOnClickTable() {
     setCurrentPage('form')
